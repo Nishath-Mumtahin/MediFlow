@@ -1,24 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediFlow | Hospital Management</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediFlow | Hospital Operations Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="loginScreen" class="login-screen hidden">
+ <div class="login-brand"><div class="logo-mark">✚</div><div><b>Medi Flow</b><small>AI-Driven Hospital Operations Management</small></div></div>
+ <div class="login-pitch"><div class="pitch-symbol">✚</div><h1>Smarter Decisions<br>for a Healthier Tomorrow</h1><p>AI-Driven Hospital Operations Management</p><div class="feature-pills"><span>Bed & Ward Allocation</span><span>Patient Priority</span><span>Doctor Recommendation</span><span>Medicine Stock Alert</span></div></div>
+ <form id="loginForm" class="login-card"><h2>Login to MediFlow</h2><p>Enter your credentials to access the system</p><label>Username<input id="username" value="admin" required></label><label>Password<input id="password" type="password" value="admin123" required></label><button class="btn primary full">Login</button><small>Authorized personnel only. This system contains confidential hospital data.</small></form>
+</div>
+<div class="layout" id="app">
+<aside class="sidebar" id="sidebar">
+ <a class="brand" href="#" data-page="dashboard"><span class="brand-plus">✚</span><span><b>Medi Flow</b><small>AI-Driven Hospital Operations</small></span></a>
+ <nav id="nav">
+  <div class="nav-group">
+   <a class="nav-link active" data-page="dashboard"><i>▦</i>Dashboard</a>
+   <a class="nav-link" data-page="priority"><i>♙</i>Patient Priority</a>
+   <a class="nav-link" data-page="beds"><i>▤</i>Bed & Ward Allocation</a>
+   <a class="nav-link" data-page="doctors"><i>✚</i>Doctor Recommendation</a>
+   <a class="nav-link" data-page="medicines"><i>⚕</i>Medicine Stock</a>
+   <a class="nav-link" data-page="resources"><i>▥</i>Resource Monitoring</a>
+   <a class="nav-link" data-page="demand"><i>⌁</i>Demand Prediction</a>
+   <a class="nav-link" data-page="insights"><i>✧</i>AI Insights</a>
+  </div><div class="nav-separator"></div>
+  <a class="nav-link" data-page="settings"><i>⚙</i>Settings</a>
+  <a class="nav-link" id="logoutBtn"><i>⇥</i>Logout</a>
+ </nav>
+ <div class="hospital-art"><div class="hospital-building"><span>✚</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+</aside>
+<main class="main">
+<header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div class="crumb">MediFlow <span>/</span> <b id="crumbName">Dashboard</b></div><div class="top-right"><div class="date-chip"><b id="dateText"></b><small id="timeText"></small></div><div class="admin-chip"><span class="admin-avatar">A</span><div><b>Welcome, Admin</b><small>Administrator</small></div></div></div></header>
+<div class="page-wrap">
+<section class="page active" id="page-dashboard">
+ <div class="page-heading"><div><h1>Dashboard</h1><p>Overview of hospital resources and recent activities.</p></div></div>
+ <div class="stats four">
+  <article class="stat"><div class="stat-head"><span>Total Patients</span><b class="bubble blue">P</b></div><strong>128</strong><small class="positive">↗ +12% from last week</small></article>
+  <article class="stat"><div class="stat-head"><span>Available Beds</span><b class="bubble green">B</b></div><strong>24 <em>/ 120</em></strong><small>20% available</small></article>
+  <article class="stat"><div class="stat-head"><span>Total Doctors</span><b class="bubble amber">D</b></div><strong>18</strong><small>4 on leave</small></article>
+  <article class="stat"><div class="stat-head"><span>Low Stock Medicines</span><b class="bubble red">M</b></div><strong>7</strong><small class="danger-text">Need restocking</small></article>
+ </div>
+ <div class="grid dashboard-grid">
+  <article class="card"><div class="card-title"><div><h2>Recent Patients</h2><p>Recently registered patients</p></div><button class="btn pale" data-page="priority">View All</button></div><div class="table-scroll"><table><thead><tr><th>ID</th><th>NAME</th><th>AGE</th><th>CONDITION</th><th>PRIORITY</th><th>STATUS</th></tr></thead><tbody id="dashboardPatients"></tbody></table></div></article>
+  <article class="card"><div class="card-title"><div><h2>Quick Actions</h2><p>Common hospital tasks</p></div></div><div class="quick-grid">
+   <button data-page="priority"><b class="quick blue-bg">＋</b>Add New Patient</button><button data-page="beds"><b class="quick green-bg">▤</b>Bed Allocation</button><button data-page="doctors"><b class="quick amber-bg">✚</b>Doctor Recommendation</button><button data-page="medicines"><b class="quick red-bg">⚕</b>Check Medicine Stock</button><button data-page="resources"><b class="quick purple-bg">▥</b>View Resource Status</button><button data-page="demand"><b class="quick blue-bg">⌁</b>Predict Resource Demand</button>
+  </div></article>
+ </div>
+ <article class="card resource-summary"><div class="card-title"><div><h2>Current Resource Status</h2><p>Hospital resource utilization at a glance</p></div><button class="btn pale" data-page="resources">View Details</button></div><div class="resource-cards">
+  <div class="resource-box"><b>Bed Occupancy</b><strong>96 / 120</strong><div class="progress"><i style="width:80%;background:#2864e8"></i></div><small>80% occupied</small></div>
+  <div class="resource-box"><b>Doctor Availability</b><strong>18 / 22</strong><div class="progress"><i style="width:82%;background:#20a45d"></i></div><small>4 on leave</small></div>
+  <div class="resource-box"><b>Medicine Stock</b><strong>43 / 50</strong><div class="progress"><i style="width:86%;background:#e43d48"></i></div><small>7 low stock items</small></div>
+ </div></article>
+ <article class="card"><div class="card-title"><div><h2>AI Insights & Alerts</h2><p>Important recommendations for hospital operations</p></div><button class="btn pale" data-page="insights">View All</button></div><div class="alert-list"><div class="alert red-alert"><b>Low Stock Alert</b><small>24 Sep 2025</small><p>Paracetamol, Metformin and Saline are below minimum level.</p></div><div class="alert blue-alert"><b>Higher Patient Inflow Expected</b><small>24 Sep 2025</small><p>Based on recent data, 20% increase in patient admission is predicted for next week.</p></div><div class="alert green-alert"><b>Suggested Bed Allocation</b><small>24 Sep 2025</small><p>3 patients can be shifted to General Ward based on current condition.</p></div></div></article>
+</section>
 
-    <h1>Welcome to MediFlow</h1>
-    <p>AI-Driven Hospital Operations Management System</p>
+<section class="page" id="page-priority">
+ <div class="page-heading"><div><h1>Patient Priority Management</h1><p>Enter patient information to get AI-assisted priority suggestion.</p></div></div>
+ <div class="grid two">
+  <article class="card"><h2>Patient Information</h2><form id="priorityForm" class="form-grid"><label>Patient ID<input id="pId" placeholder="P006"></label><label class="span2">Name<input id="pName" placeholder="Patient name" required></label><label>Age (years)<input id="pAge" type="number" min="0" placeholder="Age"></label><label>Gender<select id="pGender"><option>Male</option><option>Female</option><option>Other</option></select></label><label class="span2">Symptoms<textarea id="pSymptoms" placeholder="Describe patient symptoms..." required></textarea></label><label class="span2">Existing Condition<select id="pCondition"><option>General</option><option>Heart Disease</option><option>Diabetes</option><option>Respiratory</option><option>Pregnancy</option><option>Other</option></select></label><div class="form-actions span2"><button class="btn primary">Suggest Priority (AI)</button><button type="reset" class="btn pale">Clear</button></div></form></article>
+  <article class="card result-card"><h2>AI Suggestion Result</h2><div id="priorityResult" class="result-panel neutral-result"><span class="result-label">Suggested Priority</span><strong id="priorityValue">Awaiting patient details</strong><p id="priorityReason">Complete the patient information and request a suggestion.</p><b>Recommended Action</b><p id="priorityAction">The system will show a suggested action here.</p><small class="disclaimer">Decision support only. Clinical staff must make final decisions.</small></div></article>
+ </div>
+ <article class="card"><div class="card-title"><h2>Patient List</h2><input class="search" id="patientSearch" placeholder="Search patient..."></div><div class="table-scroll"><table><thead><tr><th>ID</th><th>NAME</th><th>AGE</th><th>CONDITION</th><th>PRIORITY</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="patientTable"></tbody></table></div></article>
+</section>
 
-    <h2>Dashboard</h2>
+<section class="page" id="page-beds">
+ <div class="page-heading"><div><h1>Bed & Ward Allocation</h1><p>Find suitable bed/ward for a patient using AI recommendation.</p></div></div>
+ <div class="grid three bed-grid">
+  <article class="card"><h2>Patient Details</h2><form id="bedForm" class="form-grid"><label class="span2">Patient ID<input id="bedPatient" value="P001"></label><label class="span2">Name<input value="Rahim Uddin" id="bedName"></label><label>Age (years)<input value="45" id="bedAge"></label><label>Gender<select><option>Male</option><option>Female</option></select></label><label class="span2">Condition<select id="bedCondition"><option>Cardiac</option><option>General</option><option>Respiratory</option><option>Critical</option></select></label><label class="span2">Priority<select id="bedPriority"><option>Urgent</option><option>Normal</option><option>Emergency</option></select></label><label class="span2">Special Requirements<textarea id="bedNeeds">Needs monitoring</textarea></label><div class="form-actions span2"><button class="btn primary">Suggest Bed/Ward (AI)</button><button type="reset" class="btn pale">Clear</button></div></form></article>
+  <article class="card"><div class="card-title"><h2>Available Beds</h2><select id="wardFilter" class="compact-select"><option>All Wards</option><option>General</option><option>ICU</option><option>HDU</option><option>Private</option></select></div><div class="table-scroll"><table><thead><tr><th>BED ID</th><th>WARD</th><th>TYPE</th><th>STATUS</th></tr></thead><tbody id="bedTable"></tbody></table></div></article>
+  <article class="card"><h2>AI Recommendation Result</h2><div class="result-panel green-result"><span class="result-label">Suggested Bed</span><strong id="bedSuggestion">B201</strong><b id="bedWard">ICU Ward</b><p id="bedReason">Patient condition requires close monitoring.</p><b>Alternative Option</b><p id="bedAlternative">B301 (HDU)</p><button class="btn primary full" id="assignBed">Assign This Bed</button></div></article>
+ </div>
+ <article class="card"><h2>Ward Occupancy Overview</h2><div class="ward-grid" id="wardOverview"></div></article>
+</section>
 
-    <ul>
-        <li>Patient Management</li>
-        <li>Doctor Management</li>
-        <li>Bed Management</li>
-        <li>Medicine Management</li>
-        <li>Appointment Management</li>
-    </ul>
+<section class="page" id="page-doctors">
+ <div class="page-heading"><div><h1>Doctor Recommendation</h1><p>Get AI-assisted doctor recommendation based on patient needs.</p></div></div>
+ <div class="grid two">
+  <article class="card"><h2>Patient Information</h2><form id="doctorForm" class="form-grid"><label>Patient ID<input id="docPatientId" value="P003"></label><label class="span2">Name<input id="docPatientName" value="Abdullah Khan"></label><label>Age (years)<input id="docAge" type="number" value="60"></label><label>Gender<select><option>Male</option><option>Female</option></select></label><label class="span2">Symptoms<textarea id="docSymptoms">Breathing issue, cough, chest pain</textarea></label><label class="span2">Preferred Department<select id="preferredDept"><option>General Medicine</option><option>Cardiology</option><option>Pulmonology</option><option>Internal Medicine</option><option>Neurology</option></select></label><label class="span2">Priority<select id="docPriority"><option>Emergency</option><option>Urgent</option><option>Normal</option></select></label><div class="form-actions span2"><button class="btn primary">Recommend Doctor (AI)</button><button type="reset" class="btn pale">Clear</button></div></form></article>
+  <article class="card"><h2>AI Recommendation Result</h2><div class="result-panel green-result"><span class="result-label">Recommended Doctor</span><strong id="doctorSuggestion">Dr. Faisal Rahman</strong><b id="doctorSpecialty">Cardiology Specialist</b><p id="doctorReason">Symptoms indicate possible cardiac issue. Cardiology department is most suitable.</p><b>Availability</b><p>Available Today</p><b>Preferred Time</b><p>10:00 AM - 12:00 PM</p><b>Alternative Option</b><p>Dr. Nusrat Ahmed (Pulmonology)</p></div></article>
+ </div>
+ <article class="card"><div class="card-title"><h2>Available Doctors</h2><input class="search" id="doctorSearch" placeholder="Search by name or specialization..."></div><div class="table-scroll"><table><thead><tr><th>ID</th><th>NAME</th><th>SPECIALIZATION</th><th>DEPARTMENT</th><th>AVAILABILITY</th><th>ACTION</th></tr></thead><tbody id="doctorTable"></tbody></table></div></article>
+</section>
 
-</body>
-</html>
+<section class="page" id="page-medicines">
+ <div class="page-heading"><div><h1>Medicine Stock Management</h1><p>View, update and get AI-based low stock alerts and restocking suggestions.</p></div></div>
+ <div class="grid two">
+  <article class="card"><h2>Add / Update Medicine</h2><form id="medicineForm" class="form-grid"><label class="span2">Medicine ID<input id="medId" placeholder="M007"></label><label class="span2">Medicine Name<input id="medName" required placeholder="Medicine name"></label><label class="span2">Category<select id="medCategory"><option>Pain Reliever</option><option>Antibiotic</option><option>Diabetes</option><option>IV Fluid</option><option>Gastric</option><option>Other</option></select></label><label class="span2">Current Stock<input id="medQty" type="number" min="0" required></label><label class="span2">Minimum Stock<input id="medMin" type="number" min="0" value="10"></label><label class="span2">Expiry Date<input id="medExpiry" type="date"></label><div class="form-actions span2"><button class="btn primary">Add / Update Medicine</button><button type="reset" class="btn pale">Clear</button></div></form></article>
+  <div class="stack"><article class="card"><h2>AI Stock Alert & Suggestion</h2><div id="stockAlert" class="alert red-alert"><b>Low Stock Detected!</b><p>Paracetamol is below its minimum stock level.</p><small>Suggestion: Review stock and arrange restocking.</small></div></article><article class="card"><h2>Stock Status</h2><div class="alert green-alert"><b>Inventory monitoring</b><p>Medicines below their reorder level will be highlighted automatically.</p></div></article></div>
+ </div>
+ <article class="card"><div class="card-title"><h2>Medicine List</h2><input class="search" id="medicineSearch" placeholder="Search medicine name..."></div><div class="table-scroll"><table><thead><tr><th>ID</th><th>MEDICINE NAME</th><th>CATEGORY</th><th>CURRENT</th><th>MINIMUM</th><th>EXPIRY DATE</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="medicineTable"></tbody></table></div></article>
+</section>
+
+<section class="page" id="page-resources">
+ <div class="page-heading"><div><h1>Resource Monitoring</h1><p>Monitor real-time status of beds, medicines, doctors and other hospital resources.</p></div></div>
+ <div class="stats four"><article class="stat"><div class="stat-head">Total Beds<b class="bubble blue">B</b></div><strong>120</strong><small>Occupied 96 | Available 24</small></article><article class="stat"><div class="stat-head">Total Doctors<b class="bubble green">D</b></div><strong>22</strong><small>On Duty 18 | On Leave 4</small></article><article class="stat"><div class="stat-head">Total Medicines<b class="bubble red">M</b></div><strong>50</strong><small>Low 7 | Sufficient 43</small></article><article class="stat"><div class="stat-head">Total Wards<b class="bubble purple">W</b></div><strong>4</strong><small>Active 4 | Inactive 0</small></article></div>
+ <div class="grid two"><article class="card"><h2>Bed Status</h2><div class="table-scroll"><table><thead><tr><th>WARD</th><th>TOTAL</th><th>OCCUPIED</th><th>AVAILABLE</th><th>STATUS</th></tr></thead><tbody id="resourceBeds"></tbody></table></div></article><article class="card"><h2>Doctor Status</h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>NAME</th><th>SPECIALIZATION</th><th>STATUS</th></tr></thead><tbody id="resourceDoctors"></tbody></table></div></article><article class="card"><h2>Medicine Stock Status</h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>MEDICINE</th><th>CURRENT</th><th>MINIMUM</th><th>STATUS</th></tr></thead><tbody id="resourceMedicines"></tbody></table></div></article><article class="card"><h2>Other Resources</h2><div class="table-scroll"><table><thead><tr><th>RESOURCE</th><th>TOTAL</th><th>IN USE</th><th>AVAILABLE</th><th>STATUS</th></tr></thead><tbody><tr><td>Ventilators</td><td>10</td><td>6</td><td>4</td><td><span class="pill warn">Moderate</span></td></tr><tr><td>Oxygen Cylinders</td><td>50</td><td>30</td><td>20</td><td><span class="pill good">Normal</span></td></tr><tr><td>Wheelchairs</td><td>20</td><td>12</td><td>8</td><td><span class="pill good">Normal</span></td></tr><tr><td>Monitors</td><td>30</td><td>22</td><td>8</td><td><span class="pill warn">Moderate</span></td></tr></tbody></table></div></article></div>
+</section>
+
+<section class="page" id="page-demand">
+ <div class="page-heading"><div><h1>Demand Prediction</h1><p>Predict future demand for beds, medicines and doctors using AI analysis.</p></div><div class="date-chip"><b>Date Range</b><small>Next 30 days</small></div></div>
+ <article class="card filter-bar"><label>Prediction Type<select id="predictionType"><option>Bed Demand</option><option>Medicine Demand</option><option>Doctor Demand</option></select></label><label>Time Period<select><option>Next 30 Days</option><option>Next 7 Days</option></select></label><label>Ward / Category<select><option>All</option><option>ICU</option><option>General</option></select></label><button class="btn primary" id="generatePrediction">Generate (AI)</button></article>
+ <div class="grid demand-grid"><article class="card"><div class="card-title"><h2 id="chartTitle">Predicted Bed Demand (Next 30 Days)</h2><div class="legend"><span></span>Actual Usage <i></i>Predicted</div></div><div class="chart-area"><div class="y-labels"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><svg viewBox="0 0 650 260" preserveAspectRatio="none" class="line-chart"><defs><pattern id="grid" width="650" height="52" patternUnits="userSpaceOnUse"><path d="M 0 52 L 650 52" fill="none" stroke="#e9edf4" stroke-width="1"/></pattern></defs><rect width="650" height="260" fill="url(#grid)"/><polyline points="0,170 65,130 130,155 195,120 260,165 325,125 390,145 455,95 520,115 585,75 650,100" fill="none" stroke="#2864e8" stroke-width="3"/><polyline points="0,185 65,160 130,145 195,135 260,125 325,115 390,100 455,90 520,65 585,45 650,25" fill="none" stroke="#e45a63" stroke-width="3" stroke-dasharray="7 6"/></svg><div class="x-labels"><span>Sep 1</span><span>Sep 5</span><span>Sep 10</span><span>Sep 15</span><span>Sep 20</span><span>Sep 25</span><span>Sep 30</span></div></div></article><article class="card"><h2>AI Prediction Summary</h2><div class="prediction-number">+35%</div><p>Bed demand is likely to increase in the next 30 days.</p><b>Reason</b><p>Seasonal flu cases and higher respiratory infections are expected.</p><b>Recommended Action</b><p>Keep extra beds ready in ICU and General Ward.</p><small class="disclaimer">Illustrative demo prediction, not a validated forecasting model.</small></article></div>
+ <div class="grid two"><article class="card"><h2>Category-wise Prediction</h2><div class="bar-chart"><div style="height:72%"><i></i><b></b><small>General</small></div><div style="height:40%"><i></i><b></b><small>ICU</small></div><div style="height:30%"><i></i><b></b><small>HDU</small></div><div style="height:22%"><i></i><b></b><small>Doctors</small></div><div style="height:65%"><i></i><b></b><small>Medicines</small></div></div></article><article class="card"><h2>Top 5 High-Demand Medicines</h2><table><thead><tr><th>RANK</th><th>MEDICINE</th><th>CURRENT</th><th>PREDICTED</th></tr></thead><tbody><tr><td>1</td><td>Paracetamol</td><td>500</td><td>800</td></tr><tr><td>2</td><td>Amoxicillin</td><td>300</td><td>450</td></tr><tr><td>3</td><td>Saline</td><td>200</td><td>320</td></tr><tr><td>4</td><td>Omeprazole</td><td>150</td><td>240</td></tr><tr><td>5</td><td>Metformin</td><td>100</td><td>180</td></tr></tbody></table></article></div>
+ <article class="card"><h2>Recent Prediction History</h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>TYPE</th><th>TIME PERIOD</th><th>WARD/CATEGORY</th><th>PREDICTED INCREASE</th><th>GENERATED ON</th></tr></thead><tbody><tr><td>P001</td><td>Bed Demand</td><td>Next 30 Days</td><td>All</td><td><span class="pill danger">+35%</span></td><td>24 Sep 2025</td></tr><tr><td>P002</td><td>Medicine Demand</td><td>Next 30 Days</td><td>Antibiotics</td><td><span class="pill danger">+50%</span></td><td>22 Sep 2025</td></tr><tr><td>P003</td><td>Doctor Demand</td><td>Next 30 Days</td><td>Cardiology</td><td><span class="pill warn">+25%</span></td><td>20 Sep 2025</td></tr></tbody></table></div></article>
+</section>
+
+<section class="page" id="page-insights">
+ <div class="page-heading"><div><h1>AI Insights & Reports</h1><p>Operational insights and decision-support recommendations.</p></div><button class="btn primary" id="reportBtn">Generate Report</button></div>
+ <div class="stats four"><article class="stat"><div class="stat-head">Total Patients<b class="bubble blue">P</b></div><strong>248</strong><small>+12% vs last month</small></article><article class="stat"><div class="stat-head">Bed Occupancy<b class="bubble green">B</b></div><strong>80%</strong><small>+8% vs last month</small></article><article class="stat"><div class="stat-head">Low Stock Items<b class="bubble red">M</b></div><strong>7</strong><small>Needs review</small></article><article class="stat"><div class="stat-head">Doctors on Duty<b class="bubble amber">D</b></div><strong>18</strong><small>4 on leave</small></article></div>
+ <div class="grid two"><article class="card"><h2>AI Insights</h2><div class="insight-item"><b>Higher Patient Inflow Expected</b><p>Recent sample data indicates a possible increase in admissions.</p></div><div class="insight-item"><b>Medicine Restocking Required</b><p>Review medicines where current quantity is below reorder level.</p></div><div class="insight-item"><b>ICU Bed Capacity</b><p>Monitor ICU occupancy and review available alternatives.</p></div></article><article class="card"><h2>AI Recommendations</h2><div class="recommendation">Keep additional ICU beds ready if emergency admissions increase.</div><div class="recommendation">Review low-stock medicines and plan restocking.</div><div class="recommendation">Review doctor availability before assigning appointments.</div><small class="disclaimer">Recommendations are illustrative and require staff verification.</small></article></div>
+</section>
+<section class="page" id="page-settings"><div class="page-heading"><div><h1>Settings</h1><p>System information and preferences.</p></div></div><article class="card settings-card"><h2>MediFlow System</h2><p>AI-Driven Hospital Operations Management System</p><p><b>Backend:</b> Spring Boot</p><p><b>Database:</b> MariaDB (XAMPP)</p><p><b>Frontend:</b> HTML, CSS, JavaScript</p><p class="disclaimer">This frontend currently displays sample data. Database/API integration is the next development phase.</p></article></section>
+<footer class="footer">© 2026 MediFlow <span>AI-Driven Hospital Operations Management System</span></footer>
+</div></main></div>
+<div id="toast" class="toast"></div>
+<script src="js/app.js"></script>
+</body></html>
