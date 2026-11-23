@@ -1,69 +1,38 @@
-# MediFlow – AI-Driven Hospital Operations Management System
+# MediFlow – Hospital Operations Management System
 
-## Project Overview
+MediFlow is a DBMS Lab project for managing hospital operations: patients, doctors, departments, appointments, treatments, prescriptions, medications, rooms and admissions, with role-based access (Admin, Doctor, Patient).
 
-MediFlow is a DBMS Lab project focused on hospital resource management and AI-assisted operational decision support.
+## Tech Stack
+- PHP 8+ (PDO) · MySQL / MariaDB · Tailwind CSS (CDN)
+- Run with XAMPP (Apache + MySQL)
 
-The system aims to help hospital staff manage patient priorities, bed availability, doctors, medicine stock, and hospital resources through a simple and user-friendly interface.
+## Setup
+1. Copy this folder to `xampp/htdocs/MediFlow`.
+2. Start Apache and MySQL in XAMPP.
+3. Import `schema.sql` in phpMyAdmin (creates the `mediflow` database with demo data).
+4. Open `http://localhost/MediFlow/`.
+5. DB settings are in `config.php` (default: root, no password).
 
-## Main Features
+## Demo Logins (password for all: `password`)
+| Role    | Username |
+|---------|----------|
+| Admin   | admin    |
+| Doctor  | m.karim  |
+| Doctor  | r.uddin  |
+| Patient | rahim    |
+| Patient | fatema   |
 
-- Patient Priority Management
-- Bed and Ward Allocation
-- Doctor Recommendation
-- Medicine Stock Management
-- Hospital Resource Monitoring
-- Resource Demand Prediction
-- AI-Assisted Insights and Recommendations
+New sign-ups are created as patients with a linked patient profile.
 
-## Project Structure
-
+## Structure
 ```text
 MediFlow/
-│
-├── database/
-│   └── mediflow.sql
-│
-├── oop/
-│   └── mediflow.java
-│
-├── docs/
-│   ├── UI_Design/
-│   └── ER_Diagram/
-│
-└── README.md
+├── auth/        login, signup, logout
+├── dashboard/   admin/doctor/patient pages
+├── docs/        ER diagram, UI design
+├── config.php   settings, session, helpers
+├── database.php PDO data-access functions
+└── schema.sql   tables + demo data
 ```
 
-## Current Progress
-
-- Initial MySQL database schema prepared.
-- Sample data added for doctors, beds, and medicines.
-- Initial Java console prototype created for patient management.
-- UI design prepared for the main system modules.
-- Entity Relationship Diagram (ERD) prepared.
-- Project documentation organized.
-
-## Pending Tasks
-
-- Execute and validate the SQL script in MySQL.
-- Develop the Java Swing user interface.
-- Connect Java with MySQL using JDBC.
-- Implement the main hospital management modules.
-- Develop basic AI-assisted decision-support features.
-- Integrate an AI API if required.
-- Test and debug the complete system.
-
-## Technology Stack
-
-- **Programming Language:** Java
-- **GUI:** Java Swing
-- **Database:** MySQL
-- **Database Connectivity:** JDBC
-- **IDE:** NetBeans
-- **AI Integration:** AI API
-
-## Project Status
-
-Currently under development.
-
-*This project is developed for academic purposes as part of the DBMS Lab course.*
+*Developed for academic purposes as part of the DBMS Lab course.*
